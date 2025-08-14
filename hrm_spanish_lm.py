@@ -355,7 +355,7 @@ def train_lm(args):
     os.makedirs(args.out_dir, exist_ok=True)
 
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, betas=(0.9,0.98), weight_decay=0.01)
-    scaler = torch.cuda.amp.GradScaler(enabled=(device=='cuda'))
+    scaler = torch.amp.GradScaler('cuda', enabled=(device=='cuda'))
 
     model.train()
     global_step = 0
